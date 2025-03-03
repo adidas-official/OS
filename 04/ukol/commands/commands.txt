@@ -1,0 +1,65 @@
+# Prikazy - ukol 4 - frydryn
+
+1. Vytvořte soubor výplaty v tomto tvaru.
+
+Novak                  Jan                   12000                    Jihlava         
+
+Novotna               Eva                   12521                    Brno           
+
+Jahoda                Petr                   22010                    Praha         
+
+Bruna                  Vaclav               8000                      Praha        
+
+Zuda                   David                 12000                    Jihlava       
+
+$ vim vyplaty.txt
+i; ctrl+v
+
+2. Vypište první a třetí sloupec
+$ awk '{print $1 $3}' vyplaty.txt
+
+3. Vyberte řádky obsahující slovo Jihlava
+$ awk '/Jihlava/' vyplaty.txt
+
+4. Vypište 1. , 2. a 4. sloupec pro  řádky obsahující slovo Jihlava
+$ awk '/Jihlava/{print $1 $2 $4}' vyplaty.txt
+
+5. Vyberte všechny řádky obsahující v 4. sloupci písmeno P
+$ awk '/P/ {print $4}' vyplaty.txt
+
+6. Vyberte všechny řádky obsahující v 4. sloupci první písmeno P
+$ awk '$4 ~/P/' vyplaty.txt
+
+7. Vyberte všechny pracovníky, kteří mají plat = 12000
+$ awk '$3 == 12000' vyplaty.txt
+
+8. Vyberte všechny pracovníky, kteří mají plat < 12000
+$ awk '$3 < 12000' vyplaty.txt
+
+9. Vyberte všechny pracovníky, kteří mají plat < 20000 a větší  než 10000
+$ awk '($3 < 20000) && ($3 > 10000)' vyplaty.txt
+
+10. Vyberte všechny pracovníky, kteří jsou z Brna nebo z Jihlavy
+$ awk '($4 == "Brno") || ($4 == "Jihlava")' vyplaty.txt
+
+11. Vypište číslo řádku, na kterém je ve sloupci Petr.
+$ awk '{ if ($2 == "Petr") print NR}' vyplaty.txt
+
+12. Zobrazte 2. a 4. řádek
+$ awk 'NR==2 || NR==4' vyplaty.txt
+
+13. Vypočtěte průměrný plat
+$ awk 'BEGIN {total=0}{total+=$3}END{print total/NR}' vyplaty.txt
+
+14. Vypočtěte průměrný plat pro všechny pracovníky z Jihlavy.
+$ awk 'BEGIN {total=0 && numOfJih=0}{if ($4=="Jihlava" && numOfJih+=1) total+=$3}END{print total/numOfJih}' vyplaty.txt
+
+15.Vypište maximální plat.
+$ awk 'BEGIN {max=0}{if ($3>max) max=$3}END{print max}' vyplaty.txt
+
+16. Vytvořte program, který každé 2 minuty zkopíruje výpis obsahu vybraného adresáře do souboru.
+# obsah scriptu:
+ls -l /path/to/folder/ > /path/to/output/file.txt
+
+# cron
+*/2 * * * * /path/to/bash/script.sh
