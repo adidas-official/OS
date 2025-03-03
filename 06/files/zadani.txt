@@ -1,0 +1,36 @@
+1. Napište příkaz, který vypíše vaše aktuální UID.
+$ id
+
+Napište příkaz, který vypíše seznam skupin, v nichž se nacházíte. 
+$ groups
+
+# Příkazy:sed,nl.
+
+Vytvořte soubor jmena.txt s 21 jmény. Z výstupu jmena.txt vypište jen sudé řádky a na začátky lichých řádek souboru jmena.txt vložte znak „l", na začátky sudých řádek vložte znak „s".
+$ sed s/n;p/
+
+2.b za každý řádek přidá volný řádek
+$ sed -e 's/$/\n/' jmena.txt
+
+2.c odstraní každý druhý řádek
+$ awk '{if ( NR % 2 == 0 ) print "s: $1";else print "l: " $1}' jmena.txt
+
+2.d vypíše řádku číslo 3
+$ sed -n '3p' jmena.txt
+
+3. Na začátky desáté až dvacáté řádky souboru jmena.txt přidejte znak #. 
+
+4.  Příkaz find
+    a) Pomocí příkazu najděte soubor jmena.txt v adresáři /home i v podadresářích
+	$ find /home -type f -name jmena.txt
+    b) Pomocí příkazu najděte v adresáři /home i v podadresarich všechny soubory začínající j s příponou .txt 
+	$ find /home -name j*.txt
+    c) Pomocí příkazu najděte v adresáři /home i v podadresářích vše, co bylo změněno před 7 dny.
+
+5. pstree
+$ pstree
+
+Zobrazte celou stromovou strukturu všech procesů operačního systému.
+
+6. Sledujte procesy v reálném času top
+$ top
