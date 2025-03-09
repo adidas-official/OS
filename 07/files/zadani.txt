@@ -1,0 +1,24 @@
+Cvičení na příkazy Linux: date, tee, touch, ls, cat, diff, split, rm, find, wc, head
+
+Přesměrování a roury:<, >, >>, >, >>, |
+
+Pomocí příkazu vytvořte soubor se jménem „datum", který bude obsahovat jednu řádku s aktuálním datem.
+$ echo $(date) > datum
+
+Datum se vloží pomocí příkazu date do souboru.
+Vypište deset největších souborů a pak deset nejmenších souborů v adresáři /etc
+$ ls -lS /etc | head -10
+$ ls -lS /etc | tail -10
+
+V adresáři /usr/bin najděte soubor, který byl modifikován naposledy.
+$ sudo find /usr/local -exec s ls -lt {} + | head -1
+# tady si nejsem uplne jisty jestli to spravne hleda posledni edit; `terminater by signal 13??`, funguje u slozek s read-for-all
+
+V souboru studenti.csv nahraďte pomocí příkazu středníky pomlčkou a pomocí diff se podívejte, které řádky byly změněny.
+$ diff studenti.csv <(sed 's/;/-/g' studenti.csv)
+
+Rozdělte příkazem  studenti.csv soubor na kusy po pěti řádcích.
+$ split studenti.csv studenti -dl 5 --additional_suffix=.csv
+
+V podstromu adresáře /tmp najděte všechny soubory, které jsou větší než sto kilobyte a jsou čitelné pro všechny.
+$ sudo find /tmp -size 100k -perm -a+r
