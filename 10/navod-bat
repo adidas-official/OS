@@ -1,0 +1,3 @@
+set --vypise systemove promenne
+USERNAME = "name"
+echo "vitejte, %USERNAME%"
